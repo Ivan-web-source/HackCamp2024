@@ -15,6 +15,7 @@ public class FlashCard {
     public boolean checkAnswer(String submit) {
         submit = submit.toLowerCase();
         if (this.answer.equals(submit)) {
+            markStatusAlreadyReview();
             return true;
         } else {
             return false;
