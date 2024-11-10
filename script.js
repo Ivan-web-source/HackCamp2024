@@ -42,6 +42,12 @@ function setCell() {
 }
 
 function modifyCell() {
+    cond = ""; // TODO
     let cell = setCell();
-    cell.src = ""; 
+    if (cond === "Player 1 Move") {
+        cell.src = ""; // TODO
+    } else if (cond === "Player 2 Move") {
+        cell.src = ""; // TODO
+    }
 }
+
