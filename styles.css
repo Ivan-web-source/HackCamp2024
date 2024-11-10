@@ -2,6 +2,17 @@ body.main {
     background-color: #89cff0;
 }
 
+body.game {
+    margin: 0;
+    padding: 0;
+    background-color: #89cff0;
+    background-image: url('images/Game\ Screen\ wood.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 body.add {
     
     background-color: #89cff0;
@@ -70,13 +81,37 @@ body.remove {
     border: rgb(53, 53, 53) 0.1rem solid;
 }
 
-.question {
+#game-article {
+    padding: 50px;
+    width: 100%;
+}
 
+.game-article-part {
+    float: left;
+    width: 50%;
+}
+
+.question-answer-section {
+    padding-left: 60px;
+}
+
+.question {
+    width: 85%;
+    height: 200px;
+    background-color: grey;
+}
+
+.answer {
+    width: 85%;
+    height: 200px;
+    background-color: grey;
 }
 
 .board {
+    float: left;
     width: 500px;
     height: 500px;
+    margin-left: 80px;
     background-image: url('images/Board.png');
     background-size: 100% 100%;
     background-position: center;
@@ -106,7 +141,7 @@ body.remove {
 
 .square3 {
     margin-top: 5%;
-    margin-left: 7%;
+    margin-left: 8%;
     background-image: url("");
 }
 
@@ -124,7 +159,7 @@ body.remove {
 
 .square6 {
     margin-top: 8%;
-    margin-left: 7%;
+    margin-left: 8%;
     background-image: url("");
 }
 
@@ -142,6 +177,6 @@ body.remove {
 
 .square9 {
     margin-top: 7%;
-    margin-left: 7%;
+    margin-left: 8%;
     background-image: url("images/Circular circle.png");
 }
