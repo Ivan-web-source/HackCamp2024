@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create FlashCard</title>
+</head>
+<body>
+
+<h2>Enter FlashCard</h2>
+
+<!-- HTML Form to input question and answer -->
+<form id="flashcard-form">
+    <input type="text" id="question" placeholder="Enter question" required><br><br>
+    <input type="text" id="answer" placeholder="Enter answer" required><br><br>
+    <button type="submit">Create FlashCard</button>
+</form>
+
+<script>
+    // JavaScript to handle form submission
+    document.getElementById('flashcard-form').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent form from reloading page
+
+        // Get values from form fields
+        const question = document.getElementById('question').value;
+        const answer = document.getElementById('answer').value;
+
+        // Create an object to send to the backend
+        const data = {
+            question: question,
+            answer: answer
+        };
+
+        // Send data to the FastAPI backend using fetch
+        try {
+            const response = await fetch('http://127.0.0.1:8000/create-flashcard/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            // Get the response from the server
+            const result = await response.json();
+            alert(result.message); // Show the server's response in an alert
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -51,20 +51,36 @@ function modifyCell() {
     }
 }
 
+async function createItem() {
+    // JavaScript to handle form submission
+    document.getElementsByClassName('add').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent form from reloading page
 
-function sendData() {
-    const inputData = {
-        text: document.getElementById('inputText').value
-    };
+        // Get values from form fields
+        const question = document.getElementById('question').value;
+        const answer = document.getElementById('answer').value;
 
-    fetch('http://127.0.0.1:5500/game.html', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(inputData)
-    })
-    .then(response => response.text())
-    .then(data => console.log("Response from Java:", data))
-    .catch(error => console.error("Error:", error));
+        // Create an object to send to the backend
+        const data = {
+            question: question,
+            answer: answer
+        };
+
+        // Send data to the FastAPI backend using fetch
+        try {
+            const response = await fetch('http://127.0.0.1:8000/create-flashcard/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            // Get the response from the server
+            const result = await response.json();
+            alert(result.message); // Show the server's response in an alert
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
 }
