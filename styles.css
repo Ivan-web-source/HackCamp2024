@@ -28,18 +28,37 @@ body.add {
 .mainpage-button {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: powderblue;
-    border-radius: 10px;
-    width: 20%;
-    height: 50px;
     cursor: pointer;
+    font-weight: 600;
+    transition: all 300ms ease;
+    padding: 1rem;
+    width: 8rem;
+    border-radius: 2rem;
 }
 
 .exit-button {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: powderblue;
     border-radius: 10px;
-    width: 15%;
-    height: 40px;
     cursor: pointer;
+    font-weight: 600;
+    transition: all 300ms ease;
+    padding: 1rem;
+    width: 8rem;
+    border-radius: 2rem;
 }
+
+.index-lower {
+    justify-content: center;
+}
+
+.start {
+    font-weight: 600;
+    transition: all 300ms ease;
+    padding: 1rem;
+    width: 8rem;
+    border-radius: 2rem;
+    border: rgb(53, 53, 53) 0.1rem solid;
+}
+
 
