@@ -51,27 +51,9 @@ function modifyCell() {
     }
 }
 
-
-// function sendData() {
-//     const inputData = {
-//         text: document.getElementById('inputText').value
-//     };
-
-//     fetch('http://127.0.0.1:8000/items/', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(inputData)
-//     })
-//     .then(response => response.text())
-//     .then(data => console.log("Response from Python:", data))
-//     .catch(error => console.error("Error:", error));
-// }
-
 async function createItem() {
     // JavaScript to handle form submission
-    document.getElementById('flashcard-form').addEventListener('submit', async function(event) {
+    document.getElementsByClassName('add').addEventListener('submit', async function(event) {
         event.preventDefault(); // Prevent form from reloading page
 
         // Get values from form fields

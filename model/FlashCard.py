@@ -61,6 +61,6 @@ async def create_flashcard(input_data: FlashCardInput):
     }
 
 # Root route
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to the FlashCard API!"}
+# @app.get("/")
+# def read_root():
+#     return {"message": "Welcome to the FlashCard API!"}
