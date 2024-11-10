@@ -1,0 +1,47 @@
+function cellOne() { return 1; }
+function cellTwo() { return 2; }
+function cellThree() { return 3; }
+function cellFour() { return 4; }
+function cellFive() { return 5; }
+function cellSix() { return 6; }
+function cellSeven() { return 7; }
+function cellEight() { return 8; }
+function cellNine() { return 9; }
+
+function setCell() {
+    switch (cellNum) {
+        case 1:
+            cell = document.getElementsByClassName("cell-one");
+            break;
+        case 2:
+            cell = document.getElementsByClassName("cell-two");
+            break;
+        case 3:
+            cell = document.getElementsByClassName("cell-three");
+            break;
+        case 4:
+            cell = document.getElementsByClassName("cell-four");
+            break;
+        case 5:
+            cell = document.getElementsByClassName("cell-five");
+            break;
+        case 6:
+            cell = document.getElementsByClassName("cell-six");
+            break;
+        case 7:
+            cell = document.getElementsByClassName("cell-seven");
+            break;
+        case 8:
+            cell = document.getElementsByClassName("cell-eight");
+            break;
+        case 9:
+            cell = document.getElementsByClassName("cell-nine");
+            break;
+    }
+    return cell;
+}
+
+function modifyCell() {
+    let cell = setCell();
+    cell.src = ""; 
+}
