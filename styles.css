@@ -16,6 +16,15 @@ body.add {
     cursor: pointer;
 }
 
+.remove {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: powderblue;
+    border-radius: 10px;
+    width: 20%;
+    height: 50px;
+    cursor: pointer;
+}
+
 .start:hover {
     transition-duration: 0.3s;
     background-color: blue;
