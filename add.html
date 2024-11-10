@@ -9,28 +9,17 @@
     <div class="mainpage-header">
         <h1 class="title">FlashCard X TicTacToe</h1>
     </div>
-    <div class="question">
-        <p>
-            <h2>Question:</h2>
-            <input type="text" id="question" placeholder="Enter question" />
-            <button class="question btn" onclick="sendData()">Enter</button>
-        </p>
-        
-    </div>
-    <div class="answer">
-        <p>
-            <h2>Answer:</h2>
-            <input type="text" id="answer" placeholder="Enter answer" />
-            <button class="answer btn" onclick="sendData()">Enter</button>
-        </p>
-        
-    </div>
+    <form id="flashcardForm">
+        <h2>Question:</h2>
+        <input type="text" id="question" placeholder="Enter question" />
+        <h2>Answer:</h2>
+        <input type="text" id="answer" placeholder="Enter answer" />
+        <button class="add-question" type="submit">Enter</button>
+    </form>
 
     <div class="flashcard list">
 
     </div>
-    <button class="return btn" 
-        onclick="location.href='mainpage.html'" 
-        >Return to Main Page</button>
+    <button class="return btn" onclick="location.href='mainpage.html'">Return to Main Page</button>
 </body>
 </html>
