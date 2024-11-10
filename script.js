@@ -11,31 +11,31 @@ function cellNine() { return 9; }
 function setCell() {
     switch (cellNum) {
         case 1:
-            cell = document.getElementsByClassName("cell-one");
+            cell = document.getElementsByClassName("square1");
             break;
         case 2:
-            cell = document.getElementsByClassName("cell-two");
+            cell = document.getElementsByClassName("square2");
             break;
         case 3:
-            cell = document.getElementsByClassName("cell-three");
+            cell = document.getElementsByClassName("square3");
             break;
         case 4:
-            cell = document.getElementsByClassName("cell-four");
+            cell = document.getElementsByClassName("square4");
             break;
         case 5:
-            cell = document.getElementsByClassName("cell-five");
+            cell = document.getElementsByClassName("square5");
             break;
         case 6:
-            cell = document.getElementsByClassName("cell-six");
+            cell = document.getElementsByClassName("square6");
             break;
         case 7:
-            cell = document.getElementsByClassName("cell-seven");
+            cell = document.getElementsByClassName("square7");
             break;
         case 8:
-            cell = document.getElementsByClassName("cell-eight");
+            cell = document.getElementsByClassName("square8");
             break;
         case 9:
-            cell = document.getElementsByClassName("cell-nine");
+            cell = document.getElementsByClassName("square9");
             break;
     }
     return cell;
