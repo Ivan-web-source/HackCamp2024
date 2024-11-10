@@ -1,5 +1,9 @@
-body {
+body.main {
     text-align: center;
+    background-color: #89cff0;
+}
+
+body.add {
     background-color: #89cff0;
 }
 
