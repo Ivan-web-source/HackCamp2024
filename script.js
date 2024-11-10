@@ -53,7 +53,7 @@ function modifyCell() {
 
 async function createItem() {
     // JavaScript to handle form submission
-    document.getElementsByClassName('add').addEventListener('submit', async function(event) {
+    document.getElementById('flashcardForm').addEventListener('submit', async function(event) {
         event.preventDefault(); // Prevent form from reloading page
 
         // Get values from form fields
@@ -84,3 +84,6 @@ async function createItem() {
         }
     });
 }
+
+// Call the function to attach the event listener when the page loads
+createItem();
