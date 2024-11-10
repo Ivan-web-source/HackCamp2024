@@ -1,11 +1,12 @@
 body.main {
-    background-color: #89cff0;
+    background-color: #e6e6bd;
 }
+
 
 body.game {
     margin: 0;
     padding: 0;
-    background-color: #89cff0;
+    background-color: #e6e6bd;
     background-image: url('images/Game\ Screen\ wood.png');
     background-size: cover;
     background-position: center;
@@ -15,19 +16,19 @@ body.game {
 
 body.add {
     
-    background-color: #89cff0;
+    background-color: #e6e6bd;
 }
 
 body.remove {
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #89cff0;
+    background-color: #e6e6bd;
     cursor: pointer;
 }
 
 .start {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: powderblue;
+    background-color: rgb(181, 130, 201);
     border-radius: 10px;
     width: 20%;
     height: 50px;
@@ -36,7 +37,15 @@ body.remove {
 
 .start:hover {
     transition-duration: 0.3s;
-    background-color: blue;
+    background-color: rgb(138, 21, 168);
+}
+
+.index-middle {
+    text-align: center;
+}
+
+.mainpage-middle {
+    text-align: center;
 }
 
 .title {
@@ -46,7 +55,7 @@ body.remove {
 
 .mainpage-button {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: powderblue;
+    background-color: rgb(181, 130, 201);
     cursor: pointer;
     font-weight: 600;
     transition: all 300ms ease;
@@ -55,9 +64,14 @@ body.remove {
     border-radius: 2rem;
 }
 
+.mainpage-button:hover {
+    transition-duration: 0.3s;
+    background-color: rgb(138, 21, 168);
+}
+
 .exit-button {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: powderblue;
+    background-color: rgb(181, 130, 201);
     border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
@@ -65,6 +79,11 @@ body.remove {
     padding: 1rem;
     width: 8rem;
     border-radius: 2rem;
+}
+
+.exit-button:hover {
+    transition-duration: 0.3s;
+    background-color: rgb(138, 21, 168);
 }
 
 .index-lower {
