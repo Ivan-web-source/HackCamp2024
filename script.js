@@ -52,9 +52,6 @@ function modifyCell() {
 }
 
 
-    cell.src = ""; 
-}
-
 function sendData() {
     const inputData = {
         text: document.getElementById('inputText').value
