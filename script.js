@@ -45,3 +45,20 @@ function modifyCell() {
     let cell = setCell();
     cell.src = ""; 
 }
+
+function sendData() {
+    const inputData = {
+        text: document.getElementById('inputText').value
+    };
+
+    fetch('http://127.0.0.1:5500/game.html', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(inputData)
+    })
+    .then(response => response.text())
+    .then(data => console.log("Response from Java:", data))
+    .catch(error => console.error("Error:", error));
+}
