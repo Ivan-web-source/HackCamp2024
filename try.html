@@ -1,54 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create FlashCard</title>
 </head>
+
 <body>
 
-<h2>Enter FlashCard</h2>
+    <h2>Enter FlashCard</h2>
 
-<!-- HTML Form to input question and answer -->
-<form id="flashcard-form">
-    <input type="text" id="question" placeholder="Enter question" required><br><br>
-    <input type="text" id="answer" placeholder="Enter answer" required><br><br>
-    <button type="submit">Create FlashCard</button>
-</form>
+    <!-- HTML Form to input question and answer -->
+    <form id="flashcard-form">
+        <input type="text" id="question" placeholder="Enter question" required><br><br>
+        <input type="text" id="answer" placeholder="Enter answer" required><br><br>
+        <button type="submit">Create FlashCard</button>
+    </form>
 
-<script>
-    // JavaScript to handle form submission
-    document.getElementById('flashcard-form').addEventListener('submit', async function(event) {
-        event.preventDefault(); // Prevent form from reloading page
+    <h2>Enter TicTacToe Move</h2>
 
-        // Get values from form fields
-        const question = document.getElementById('question').value;
-        const answer = document.getElementById('answer').value;
+    <!-- HTML Form to input TicTacToe move -->
+    <form id="tictactoe-form">
+        <input type="text" id="answer-submitted_answer" placeholder="Enter your answer" required><br><br>
+        <input type="number" id="horizontal_choice" placeholder="Enter horizontalChoice" required><br><br>
+        <input type="number" id="vertical_choice" placeholder="Enter verticalChoice" required><br><br>
+        <button type="submit">Create Choice</button>
+    </form>
 
-        // Create an object to send to the backend
-        const data = {
-            question: question,
-            answer: answer
-        };
+    <script>
+        // JavaScript to handle flashcard form submission
+        document.getElementById('flashcard-form').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent form from reloading page
 
-        // Send data to the FastAPI backend using fetch
-        try {
-            const response = await fetch('http://127.0.0.1:8000/create-flashcard/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
+            // Get values from form fields
+            const question = document.getElementById('question').value;
+            const answer = document.getElementById('answer').value;
 
-            // Get the response from the server
-            const result = await response.json();
-            alert(result.message); // Show the server's response in an alert
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    });
-</script>
+            // Create an object to send to the backend
+            const data = {
+                question: question,
+                answer: answer
+            };
+
+            // Send data to the FastAPI backend using fetch
+            try {
+                const response = await fetch('http://127.0.0.1:8000/create-flashcard/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                // Get the response from the server
+                const result = await response.json();
+                alert(result.message); // Show the server's response in an alert
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        // JavaScript to handle TicTacToe form submission
+        document.getElementById('tictactoe-form').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent form from reloading page
+
+            // Get values from form fields
+            const horizontal_choice = document.getElementById('horizontal_choice').value; // X-axis (0, 1, 2)
+            const vertical_choice = document.getElementById('vertical_choice').value;   // Y-axis (0, 1, 2)
+            const submitted_answer = document.getElementById('answer-submitted_answer').value; // Corrected ID here
+
+            // Create an object to send to the backend
+            const data1 = {
+                submitted_answer: submitted_answer,
+                horizontal_choice: horizontal_choice,
+                vertical_choice: vertical_choice
+            };
+
+            // Send data to the FastAPI backend using fetch
+            try {
+                const response1 = await fetch('http://127.0.0.1:8000/make-move/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data1),
+                });
+
+                // Get the response from the server
+                const result1 = await response1.json();
+                alert(result1.message); // Show the server's response in an alert
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
+
 
 </body>
+
 </html>
