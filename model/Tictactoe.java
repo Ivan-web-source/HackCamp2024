@@ -95,6 +95,8 @@ public class Tictactoe {
     }
 
     private void putValue(String value, int horizontal1, int vertical) {
+        horizontalChoice = horizontal1;
+        verticalChoice = vertical;
         if (horizontalChoice == 0) {
             if (vertical1.get(verticalChoice) == null) {
                 vertical1.remove(verticalChoice);
