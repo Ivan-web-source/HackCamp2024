@@ -1,0 +1,41 @@
+body {
+    text-align: center;
+    background-color: #89cff0;
+}
+
+.start {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: powderblue;
+    border-radius: 10px;
+    width: 20%;
+    height: 50px;
+    cursor: pointer;
+}
+
+.start:hover {
+    transition-duration: 0.3s;
+    background-color: blue;
+}
+
+.title {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.mainpage-button {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: powderblue;
+    border-radius: 10px;
+    width: 20%;
+    height: 50px;
+    cursor: pointer;
+}
+
+.exit-button {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: powderblue;
+    border-radius: 10px;
+    width: 15%;
+    height: 40px;
+    cursor: pointer;
+}
+
