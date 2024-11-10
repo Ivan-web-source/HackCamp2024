@@ -56,7 +56,7 @@ public class Tictactoe {
         lof.remove(f1);
     }
 
-    public void changeValue() {
+    public String changeValue() {
         if (lof.size() > 0) {
             //TODO LIHAT ANJENG
             String temp = "";
@@ -66,20 +66,32 @@ public class Tictactoe {
             Random rand = new Random();
             int randomElement = rand.nextInt(lof.size());
             FlashCard currFlashCard = lof.get(randomElement);
+            
             if (currFlashCard.checkAnswer(temp)) {
-
-            }
-            if (statusPlayer1 == true) {
-                String value = player.get("PLAYER1");
-                putValue(value, horizontal1, vertical);
-                statusPlayer1 = false;
+                if (statusPlayer1 == true) {
+                    String value = player.get("PLAYER1");
+                    putValue(value, horizontal1, vertical);
+                    statusPlayer1 = false;
+                    lof.remove(currFlashCard);
+                    return "Player 1 Move";
+                } else {
+                    String value = player.get("PLAYER2");
+                    putValue(value, horizontal1, vertical); 
+                    statusPlayer1 = true;
+                    lof.remove(currFlashCard);
+                    return "Player 2 Move";
+                }
             } else {
-                String value = player.get("PLAYER2");
-                putValue(value, horizontal1, vertical); 
-                statusPlayer1 = true;
+                if (statusPlayer1 == true) {
+                    statusPlayer1 = false;
+                    return "Wrong answer, Player 2 Turn";
+                } else {
+                    statusPlayer1 = true;
+                    return "Wrong answer, Player 1 Turn";
+                }
             }
         }
-
+                return null;
     }
 
     private void putValue(String value, int horizontal1, int vertical) {
@@ -105,4 +117,7 @@ public class Tictactoe {
         return lof;
     }
 
+    public boolean returnStatusPlayer1() {
+        return statusPlayer1;
+    }
 }
