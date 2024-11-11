@@ -8,7 +8,11 @@ class FlashCard:
         self.question = question
         self.answer = answer.lower()
         self.status_answer = False
-
+        self.cell = 0
+        self.horizontal1 = 0
+        self.vertical = 0
+        
+        
     def check_answer(self, submit):
         submit = submit.lower()
         if self.answer == submit:
@@ -44,34 +48,58 @@ class Tictactoe:
 
     def remove_flash_card(self, flash_card_number):
         self.flashcards.pop(flash_card_number)
-
-    def change_value(self, answer, cell_number):
-        if len(self.flashcards) > 0:
-            temp = answer  # Placeholder, this could be an answer to the flash card question
+        
+        
+    def put_cell(self, cell_number):
             if cell_number < 4:
                 horizontal1 = 0
                 vertical = cell_number - 1
+                
+                if self.status_player1:
+                    value = self.player["PLAYER1"]
+                    self.put_value(value, self.horizontal1, self.vertical)
+                    self.status_player1 = False
+                else:                
+                    value = self.player["PLAYER2"]
+                    self.put_value(value, self.horizontal1, self.vertical)
+                    self.status_player1 = True
             if cell_number < 7 and cell_number > 3:
                 horizontal1 = 1
                 vertical = cell_number - 4
+                
+                if self.status_player1:
+                    value = self.player["PLAYER1"]
+                    self.put_value(value, self.horizontal1, self.vertical)
+                    self.status_player1 = False
+                else:                
+                    value = self.player["PLAYER2"]
+                    self.put_value(value, self.horizontal1, self.vertical)
+                    self.status_player1 = True
             if cell_number < 10 and cell_number > 6:
                 horizontal1 = 2
                 vertical = cell_number - 7
-
-            number = random.choice(len(self.flashcards))
-            curr_flash_card = FlashCard[number]
+                
+                if self.status_player1:
+                    value = self.player["PLAYER1"]
+                    self.put_value(value, self.horizontal1, self.vertical)
+                    self.status_player1 = False
+                else:                
+                    value = self.player["PLAYER2"]
+                    self.put_value(value, self.horizontal1, self.vertical)
+                    self.status_player1 = True
+        
+    def change_value(self, answer):
+        if len(self.flashcards) > 0:
+            temp = answer  # Placeholder, this could be an answer to the flash card question
+            
+            number = random.randint(0, len(self.flashcards) - 1)
+            curr_flash_card = self.flashcards[number]
 
             if curr_flash_card.check_answer(temp):
                 if self.status_player1:
-                    value = self.player["PLAYER1"]
-                    self.put_value(value, horizontal1, vertical)
-                    self.status_player1 = False
                     self.flashcards.remove_flash_card(number)
                     return "Player 1 Move"
                 else:
-                    value = self.player["PLAYER2"]
-                    self.put_value(value, horizontal1, vertical)
-                    self.status_player1 = True
                     self.flashcards.remove_flash_card(number)
                     return "Player 2 Move"
             else:
@@ -82,7 +110,7 @@ class Tictactoe:
                     self.status_player1 = True
                     return "Wrong answer, Player 1 Turn"
         return None
-
+        
     def put_value(self, value, horizontal1, vertical):
         self.horizontal_choice = horizontal1
         self.vertical_choice = vertical
@@ -122,13 +150,11 @@ game = Tictactoe()
 # Pydantic model to receive data from JavaScript
 class TictactoeInput(BaseModel):
     submitted_answer: str
-    horizontal_choice: int
-    vertical_choice: int
 
 # API endpoint to make a move
 @app.post("/make-move/")
 async def make_move(input_data: TictactoeInput):
-    result = game.change_value(input_data.submitted_answer, input_data.horizontal_choice, input_data.vertical_choice)
+    result = game.change_value(input_data.submitted_answer)
     return {"message": result}
 
 # API endpoint to get current board state
