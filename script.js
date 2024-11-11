@@ -54,7 +54,7 @@ function modifyCell(cellNum) {
 
 async function createItem() {
     // JavaScript to handle form submission
-    document.getElementById('flashcard-Form').addEventListener('submit', async function(event) {
+    document.getElementById('flashcard-form').addEventListener('submit', async function(event) {
         event.preventDefault(); // Prevent form from reloading page
 
         // Get values from form fields
