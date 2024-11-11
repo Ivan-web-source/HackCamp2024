@@ -156,3 +156,22 @@ function formQuestionList() {
 
     container1.innerHTML = content; // Populate "add-question-list"
 }
+
+
+async function getFlashCard() {
+    try {
+        // Send a GET request to the FastAPI endpoint
+        const response = await fetch('http://127.0.0.1:8000/get-flashcard/');
+        
+        // Check if the response is successful (status 200)
+        if (response.ok) {
+            const data = await response.json(); // Parse the response to JSON
+            displayFlashCard(data);  // Pass the data to a function to display it
+        } else {
+            console.error("Failed to fetch flashcard");
+        }
+    } catch (error) {
+        console.error("Error fetching flashcard:", error);
+    }
+}
+

@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
+number = 0
 class FlashCard:
     def __init__(self, question, answer):
         self.question = question
@@ -198,7 +199,17 @@ async def remove(input_data: FlashCardDelete):
 @app.get("/flashcards/")
 async def get_flashcards():
     return {"flashcards": game.get_flash_cards()}
-# Root route
+
+# Endpoint to get the current flashcard question
+@app.get("/get-current-flashcard-question")
+async def get_current_flashcard_question():
+    if game.get_flash_cards():
+        # Return only the question part of the current flashcard (first in the list or any logic)
+        current_flashcard = game.get_flash_cards()[number]  # You can modify this to be any logic for "current"
+        return {"question": current_flashcard.question}
+    else:
+        return {"error": "No flashcards available"}
+# # Root route
 # @app.get("/")
 # def read_root():
 #     return {"message": "Welcome to the FlashCard API!"}
