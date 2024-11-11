@@ -54,7 +54,7 @@ function modifyCell(cellNum) {
 
 async function createItem() {
     // JavaScript to handle form submission
-    document.getElementById('flashcard-form').addEventListener('submit', async function(event) {
+    document.getElementById('flashcard-Form').addEventListener('submit', async function(event) {
         event.preventDefault(); // Prevent form from reloading page
 
         // Get values from form fields
@@ -65,6 +65,7 @@ async function createItem() {
         const data = {
             question: inputquestion,
             answer: inputanswer
+            
         };
 
         // Send data to the FastAPI backend using fetch
@@ -89,17 +90,16 @@ async function createItem() {
 // Call the function to attach the event listener when the page loads
 createItem();
 
-async function ticTacToeAnswer(cell_number) {
+async function ticTacToeAnswer() {
     document.getElementById('tictactoe-form').addEventListener('submit', async function (event) {
         event.preventDefault(); // Prevent form from reloading page
     
         // Get values from form fields
-        const submitted_answer = document.getElementById('answer-submitted_answer').value; // Corrected ID here
+        const submitted_answer = document.getElementById('inputanswer').value; // Corrected ID here
     
         // Create an object to send to the backend
         const data1 = {
             submitted_answer: submitted_answer,
-            cell_number: cell_number
         };
     
         // Send data to the FastAPI backend using fetch
@@ -120,8 +120,7 @@ async function ticTacToeAnswer(cell_number) {
         }
     });
 }
-
-ticTacToeAnswer();
+ticTacToeAnswer()
 
 
 let flashcardList = [];
