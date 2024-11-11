@@ -87,3 +87,36 @@ async function createItem() {
 
 // Call the function to attach the event listener when the page loads
 createItem();
+
+async function ticTacToeAnswer() {
+    document.getElementById('tictactoe').addEventListener('submitans', async function (event) {
+        event.preventDefault(); // Prevent form from reloading page
+    
+        // Get values from form fields
+        const submitted_answer = document.getElementById('answer-submitted_answer').value; // Corrected ID here
+    
+        // Create an object to send to the backend
+        const data1 = {
+            submitted_answer: submitted_answer
+        };
+    
+        // Send data to the FastAPI backend using fetch
+        try {
+            const response1 = await fetch('http://127.0.0.1:8000/make-move/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data1),
+            });
+    
+            // Get the response from the server
+            const result1 = await response1.json();
+            alert(result1.message); // Show the server's response in an alert
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+}
+
+ticTacToeAnswer();
