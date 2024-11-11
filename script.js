@@ -133,7 +133,7 @@ async function fetchFlashcards() {
             const data = await response.json();
             flashcardList = data.flashcards;  // Store the list of flashcards in the array
             console.log("Flashcard List:", flashcardList);  // Log the array to the console
-            return flashcardList;
+            formQuestionList();  // Call formQuestionList after data is fetched
         } else {
             console.error("Failed to fetch flashcards.");
         }
@@ -142,7 +142,7 @@ async function fetchFlashcards() {
     }
 }
 
-// Call the function to fetch and store flashcards in the list
+// Fetch and store flashcards, then render them
 fetchFlashcards();
 
 function formQuestionList() {
@@ -150,8 +150,9 @@ function formQuestionList() {
 
     let content = "";
 
-    for(let i = 0; i < fetchFlashcards().length; i++) {
-        content += "\n<div class='question-in-list'>" + fetchFlashcards()[i].question + "</div>";
+    // Loop through the flashcards and create content
+    for (let i = 0; i < flashcardList.length; i++) {
+        content += "<div class='question-in-list'>" + flashcardList[i].question + "</div>";
     }
 
     container.innerHTML = content;
