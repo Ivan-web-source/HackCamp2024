@@ -9,44 +9,44 @@ function cellEight() { return 8; }
 function cellNine() { return 9; }
 
 function setCell(cellNum) {
+    let cell = "";
     switch (cellNum) {
         case 1:
-            cell = document.getElementsByClassName("square1");
+            cell = document.getElementsByClassName("square1")[0];
             break;
         case 2:
-            cell = document.getElementsByClassName("square2");
+            cell = document.getElementsByClassName("square2")[0];
             break;
         case 3:
-            cell = document.getElementsByClassName("square3");
+            cell = document.getElementsByClassName("square3")[0];
             break;
         case 4:
-            cell = document.getElementsByClassName("square4");
+            cell = document.getElementsByClassName("square4")[0];
             break;
         case 5:
-            cell = document.getElementsByClassName("square5");
+            cell = document.getElementsByClassName("square5")[0];
             break;
         case 6:
-            cell = document.getElementsByClassName("square6");
+            cell = document.getElementsByClassName("square6")[0];
             break;
         case 7:
-            cell = document.getElementsByClassName("square7");
+            cell = document.getElementsByClassName("square7")[0];
             break;
         case 8:
-            cell = document.getElementsByClassName("square8");
+            cell = document.getElementsByClassName("square8")[0];
             break;
         case 9:
-            cell = document.getElementsByClassName("square9");
+            cell = document.getElementsByClassName("square9")[0];
             break;
     }
     return cell;
 }
 
 function modifyCell(cellNum) {
-    cond = ""; // TODO
     let cell = setCell(cellNum);
-    ticTacToeAnswer(cell_number);
-    if (cond === "Player 1 Move") {
-        cell.src = "./images/Cross.png";
+    // ticTacToeAnswer(cellNum);
+    if (true) {
+        cell.style.backgroundImage = 'url("./images/Cross.png")';
     } else if (cond === "Player 2 Move") {
         cell.src = "./images/Circular circle.png";
     }
