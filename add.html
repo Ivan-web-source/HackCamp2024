@@ -10,17 +10,19 @@
     <div class="mainpage-header">
         <h1 class="title">MatchMind</h1>
     </div>
-    <div class="">
-        <form id="flashcardForm">
-            <h2>Question:</h2>
-            <input type="text" id="question" placeholder="Enter question" />
-            <h2>Answer:</h2>
-            <input type="text" id="answer" placeholder="Enter answer" />
-            <button class="add-question" type="submit">Enter</button>
-        </form>
-    </div>
-    <div class="flashcard list"></div>
-    <button class="return btn" onclick="location.href='mainpage.html'">Return to Main Page</button>
-    <script src="script.js"></script>
+    <article>
+        <div class="add-question-answer-section">
+            <form id="flashcard-form">
+                <h2 class="game-question-title">Question:</h2>
+                <input type="text" id="input-answer" placeholder="Enter question" />
+                <h2 class="game-answer-title">Answer:</h2>
+                <input type="text" id="input-answer" placeholder="Enter answer" />
+                <button class="add-question" type="submit">Enter</button>
+            </form>
+        </div>
+        <div class="flashcard list"></div>
+        <button class="return btn" onclick="location.href='mainpage.html'">Return to Main Page</button>
+        <script src="script.js"></script>
+    </article>
 </body>
 </html>

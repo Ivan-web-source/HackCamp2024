@@ -42,29 +42,37 @@ class Tictactoe:
     def add_flash_card(self, flash_card):
         self.flashcards.append(flash_card)
 
-    def remove_flash_card(self, flash_card):
-        self.flashcards.remove(flash_card)
+    def remove_flash_card(self, flash_card_number):
+        self.flashcards.pop(flash_card_number)
 
-    def change_value(self, answer, horizontal_choices, vertical_choices):
+    def change_value(self, answer, cell_number):
         if len(self.flashcards) > 0:
             temp = answer  # Placeholder, this could be an answer to the flash card question
-            horizontal1 = horizontal_choices
-            vertical = vertical_choices
+            if cell_number < 4:
+                horizontal1 = 0
+                vertical = cell_number - 1
+            if cell_number < 7 and cell_number > 3:
+                horizontal1 = 1
+                vertical = cell_number - 4
+            if cell_number < 10 and cell_number > 6:
+                horizontal1 = 2
+                vertical = cell_number - 7
 
-            curr_flash_card = random.choice(self.flashcards)
+            number = random.choice(len(self.flashcards))
+            curr_flash_card = FlashCard[number]
 
             if curr_flash_card.check_answer(temp):
                 if self.status_player1:
                     value = self.player["PLAYER1"]
                     self.put_value(value, horizontal1, vertical)
                     self.status_player1 = False
-                    self.flashcards.remove(curr_flash_card)
+                    self.flashcards.remove_flash_card(number)
                     return "Player 1 Move"
                 else:
                     value = self.player["PLAYER2"]
                     self.put_value(value, horizontal1, vertical)
                     self.status_player1 = True
-                    self.flashcards.remove(curr_flash_card)
+                    self.flashcards.remove_flash_card(number)
                     return "Player 2 Move"
             else:
                 if self.status_player1:
@@ -73,7 +81,7 @@ class Tictactoe:
                 else:
                     self.status_player1 = True
                     return "Wrong answer, Player 1 Turn"
-        return "KONTOL"
+        return None
 
     def put_value(self, value, horizontal1, vertical):
         self.horizontal_choice = horizontal1
@@ -147,6 +155,22 @@ async def create_flashcard(input_data: FlashCardInput):
         "message": f"FlashCard created with question: '{flashcard.get_question()}' and answer: '{flashcard.get_answer()}' question number '{len(game.get_flash_cards())}'"
     }
 
+# Pydantic model to receive data from JavaScript
+class FlashCardDelete(BaseModel):
+    num: int
+
+# API endpoint to receive the data from JavaScript and delete a FlashCard instance
+@app.post("/remove-flashcard/")
+async def remove(input_data: FlashCardDelete):
+    game.remove_flash_card(input_data.num)
+    return {
+        "message": f"FlashCard number '{input_data.num} in the list has been remove, remaining FlashCard'{len(game.get_flash_cards())}'"
+    }
+    
+# Endpoint to get flashcards
+@app.get("/flashcards/")
+async def get_flashcards():
+    return {"flashcards": game.get_flash_cards()}
 # Root route
 # @app.get("/")
 # def read_root():

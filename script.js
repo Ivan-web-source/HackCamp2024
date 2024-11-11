@@ -54,7 +54,7 @@ function modifyCell(cellNum) {
 
 async function createItem() {
     // JavaScript to handle form submission
-    document.getElementById('flashcardForm').addEventListener('submit', async function(event) {
+    document.getElementById('flashcard-Form').addEventListener('submit', async function(event) {
         event.preventDefault(); // Prevent form from reloading page
 
         // Get values from form fields
@@ -122,4 +122,26 @@ async function ticTacToeAnswer(cell_number) {
     });
 }
 
+ticTacToeAnswer();
 
+
+let flashcardList = [];
+
+// Function to fetch flashcards from the FastAPI backend
+async function fetchFlashcards() {
+    try {
+        const response = await fetch("http://127.0.0.1:8000/flashcards/");
+        if (response.ok) {
+            const data = await response.json();
+            flashcardList = data.flashcards;  // Store the list of flashcards in the array
+            console.log("Flashcard List:", flashcardList);  // Log the array to the console
+        } else {
+            console.error("Failed to fetch flashcards.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+// Call the function to fetch and store flashcards in the list
+fetchFlashcards();

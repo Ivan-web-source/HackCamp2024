@@ -28,6 +28,13 @@
         <button type="submit">Create Choice</button>
     </form>
 
+    <h2>Enter Remove Move</h2>
+    <!-- HTML Form to input TicTacToe move -->
+    <form id="remove-form">
+        <input type="text" id="num" placeholder="Enter your answer" required><br><br>
+        <button type="submit">Create Choice</button>
+    </form>
+
     <script>
         // JavaScript to handle flashcard form submission
         document.getElementById('flashcard-form').addEventListener('submit', async function (event) {
@@ -94,6 +101,69 @@
                 console.error('Error:', error);
             }
         });
+
+        // JavaScript to remove Flashcard form submission
+        document.getElementById('remove-form').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent form from reloading page
+
+            // Get values from form fields
+            const num = document.getElementById('num').value; // Corrected ID here
+
+            // Create an object to send to the backend
+            const data2 = {
+                num: num,
+            };
+
+            // Send data to the FastAPI backend using fetch
+            try {
+                const response2 = await fetch('http://127.0.0.1:8000/remove-flashcard/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data2),
+                });
+
+                // Get the response from the server
+                const result1 = await response2.json();
+                alert(result1.message); // Show the server's response in an alert
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        // // Function to fetch flashcards from the FastAPI backend
+        // async function fetchFlashcards() {
+        //     try {
+        //         const response = await fetch("http://127.0.0.1:8000/flashcards/");
+        //         if (response.ok) {
+        //             const data = await response.json();
+        //             console.log("Flashcards:", data.flashcards);
+        //             // Process the flashcards data, e.g., display it on the page
+        //             displayFlashcards(data.flashcards);
+        //         } else {
+        //             console.error("Failed to fetch flashcards.");
+        //         }
+        //     } catch (error) {
+        //         console.error("Error:", error);
+        //     }
+        // }
+
+        // // Function to display flashcards on the page
+        // function displayFlashcards(flashcards) {
+        //     const flashcardContainer = document.getElementById("flashcard-container");
+        //     flashcardContainer.innerHTML = "";  // Clear any existing content
+        //     flashcards.forEach(card => {
+        //         const flashcardDiv = document.createElement("div");
+        //         flashcardDiv.classList.add("flashcard");
+        //         flashcardDiv.innerHTML = `<h3>${card.question}</h3>`;
+        //         flashcardContainer.appendChild(flashcardDiv);
+        //     });
+        // }
+
+        // Call the function to fetch and display flashcards
+        fetchFlashcards();
+
     </script>
 
 
