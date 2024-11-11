@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>FlashCard X TicTacToe</title>
+    <title>MatchMind</title>
 </head>
 <body class="game">
     <div class="mainpage-header">
@@ -26,26 +26,23 @@
         </div>
         <div class="game-article-part">
             <div class="question-answer-section">
-                <div class="question">
-                    <p>
-                        <h2>Question:</h2>
-                        <!-- KERJAIN KONTOL -->
-                    </p>
-                    
+                <div class="game-question">
+                    <h2 class="game-question-title">Question:</h2>
                 </div>
-                <div class="answer">
-                    <p>
-                        <h2>Answer:</h2>
-                        <input type="text" id="inputText" placeholder="Enter answer" />
-                        <button class="" onclick="sendData()">Enter</button>
-                    </p>
-                    
+                <div class="game-answer">
+                    <form id="tictactoe">
+                        <h2 class="game-answer-title">Answer:</h2>
+                        <div style="text-align: center;">
+                            <input type="text" id="input-answer" placeholder="Enter answer" />
+                            <br>
+                            <button class="input-answer-button" type="submitans">Submit</button>
+                        </div>
+                    </form>
                 </div>
-                <button class="return btn" 
-                    onclick="location.href='mainpage.html'" 
-                    >Return to Main Page</button>
+                <button class="game-return-button" onclick="location.href='mainpage.html'">Return to Main Page</button>
             </div>
         </div>
+        <script src="script.js"></script>
     </article>
 </body>
 </html>
