@@ -54,6 +54,18 @@
     } catch (error) {
         console.error('Error:', error);
     }
+
+    function formQuestionList() {
+    const container = document.getElementById("remove-question-list");
+
+    let content = "";  // Clear the content string
+
+    for (let i = 0; i < flashcardList.length; i++) {
+        content += "<div class='question-in-list'>" + flashcardList[i].question + "</div>";
+    }
+
+    container.innerHTML = content; // Populate only "add-question-list"
+}
 });
     </script>
 </body>

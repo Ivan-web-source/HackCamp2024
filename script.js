@@ -147,7 +147,6 @@ fetchFlashcards();
 
 function formQuestionList() {
     const container1 = document.getElementById("add-question-list");
-    const container2 = document.getElementById("remove-question-list");
 
     let content = "";  // Clear the content string
 
@@ -156,5 +155,4 @@ function formQuestionList() {
     }
 
     container1.innerHTML = content; // Populate "add-question-list"
-    container2.innerHTML = content; // Populate "remove-question-list"
 }
