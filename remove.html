@@ -10,75 +10,51 @@
     <div class="mainpage-header">
         <h1 class="title">MatchMind</h1>
     </div>
-    <div class="flashcard list" id="add-question-list"></div> <!-- Display questions here -->
+    <div class="flashcard list">
+        
+    </div>
     <div class="remove-question-list">
         <div id="remove-question-list"></div>
         <form id="flashcard-remove-Form">
             <h2 class="game-question-title">Question number:</h2>
             <input type="text" id="inputorder" placeholder="Enter flashcard number" />
-            <button class="add-enter-button" type="submit">Submit</button>
+            <button class="add-enter-button" type="submit" onclick="formQuestionList()">Submit</button>
         </form>
+
+
     </div>
     
     <button class="return btn" onclick="location.href='mainpage.html'">Return to Main Page</button>
 
     <script>
         document.getElementById('flashcard-remove-Form').addEventListener('submit', async function (event) {
-            event.preventDefault();
+    event.preventDefault(); // Prevent form from reloading page
 
-            const num = document.getElementById('inputorder').value;
+    // Get values from form fields
+    const num = document.getElementById('inputorder').value; // Use correct ID here
 
-            const data2 = { num: num };
+    // Create an object to send to the backend
+    const data2 = {
+        num: num,
+    };
 
-            try {
-                const response2 = await fetch('http://127.0.0.1:8000/remove-flashcard/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data2),
-                });
-
-                const result1 = await response2.json();
-                alert(result1.message);
-                fetchFlashcards(); // Refresh question list after removal
-            } catch (error) {
-                console.error('Error:', error);
-            }
+    // Send data to the FastAPI backend using fetch
+    try {
+        const response2 = await fetch('http://127.0.0.1:8000/remove-flashcard/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data2),
         });
 
-        let flashcardList = [];
-
-        async function fetchFlashcards() {
-            try {
-                const response = await fetch("http://127.0.0.1:8000/flashcards/");
-                if (response.ok) {
-                    const data = await response.json();
-                    flashcardList = data.flashcards;
-                    formQuestionList();  // Render questions
-                } else {
-                    console.error("Failed to fetch flashcards.");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-            }
-        }
-
-        function formQuestionList() {
-            const container = document.getElementById("add-question-list");
-            const container2 = document.getElementById("remove-question-list");
-
-            let content = "";
-
-            for (let i = 0; i < flashcardList.length; i++) {
-                content += "<div class='question-in-list'>" + flashcardList[i].question + "</div>";
-            }
-
-            container.innerHTML = content;
-            container2.innerHTML = content;
-        }
-
-        fetchFlashcards(); // Initial load
+        // Get the response from the server
+        const result1 = await response2.json();
+        alert(result1.message); // Show the server's response in an alert
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
     </script>
 </body>
 </html>
