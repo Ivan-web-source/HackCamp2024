@@ -151,7 +151,7 @@ function formQuestionList() {
     let content = "";
 
     for(let i = 0; i < fetchFlashcards().length; i++) {
-        content += "\n<div class='question-in-list'>" + fetchFlashcards()[i].question;
+        content += "\n<div class='question-in-list'>" + fetchFlashcards()[i].question + "</div>";
     }
 
     container.innerHTML = content;
