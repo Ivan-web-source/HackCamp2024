@@ -134,6 +134,7 @@ async function fetchFlashcards() {
             const data = await response.json();
             flashcardList = data.flashcards;  // Store the list of flashcards in the array
             console.log("Flashcard List:", flashcardList);  // Log the array to the console
+            return flashcardList;
         } else {
             console.error("Failed to fetch flashcards.");
         }
@@ -144,3 +145,15 @@ async function fetchFlashcards() {
 
 // Call the function to fetch and store flashcards in the list
 fetchFlashcards();
+
+function formQuestionList() {
+    const container = document.getElementById("add-question-list");
+
+    let content = "";
+
+    for(let i = 0; i < fetchFlashcards().length; i++) {
+        content += "\n<div class='question-in-list'>" + fetchFlashcards()[i].question;
+    }
+
+    container.innerHTML = content;
+}
