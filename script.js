@@ -167,6 +167,23 @@ async function fetchCurrentFlashcardQuestion() {
     }
 }
 
+async function getCurrentPlayerInfo() {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/current-player-info/');
+        const data = await response.json();
+        console.log('Current Player:', data.current_player); // 'PLAYER1' or 'PLAYER2'
+        console.log('Current Value:', data.current_value);   // 'X' or 'O'
+
+        // Example: Update HTML to show current player and value
+        document.getElementById("current-player").innerText = `Current Player: ${data.current_player}`;
+        document.getElementById("current-value").innerText = `Current Value: ${data.current_value}`;
+    } catch (error) {
+        console.error("Error fetching current player info:", error);
+    }
+}
+
+// Call the function to display the current player and value when the page loads
+window.onload = getCurrentPlayerInfo;
 
 // Fetch and display the current flashcard question when the page loads
 window.onload = fetchCurrentFlashcardQuestion;  // Fetch the first flashcard's question

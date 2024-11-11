@@ -209,6 +209,16 @@ async def get_current_flashcard_question():
         return {"question": current_flashcard.question}
     else:
         return {"error": "No flashcards available"}
+
+@app.get("/current-player-info/")
+async def current_player_info():
+    current_player = "PLAYER1" if game.return_status_player1() else "PLAYER2"
+    current_value = game.player["PLAYER1"] if game.return_status_player1() else game.player["PLAYER2"]
+    
+    return {
+        "current_player": current_player,
+        "current_value": current_value
+    } 
 # # Root route
 # @app.get("/")
 # def read_root():
