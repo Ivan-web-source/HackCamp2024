@@ -10,32 +10,19 @@
     <div class="mainpage-header">
         <h1 class="title">MatchMind</h1>
     </div>
-    
-    <!-- Display Flashcard List -->
-    <div class="flashcard-list" id="add-question-list">
+    <div class="flashcard list" id="add-question-list">
         <!-- Flashcard list will be populated here -->
     </div>
-
-    <!-- Form for Adding Flashcards -->
-    <div class="add-question-answer-section">
-        <form id="flashcard-Form">
-            <h2 class="game-question-title">Question:</h2>
-            <input type="text" id="inputquestion" placeholder="Enter question" />
-            <input type="text" id="inputanswer" placeholder="Enter answer" />
-            <button class="add-enter-button" type="submit">Submit</button>            
-        </form>
-    </div>
-
-    <!-- Form for Removing Flashcards -->
-    <div class="remove-question-section">
+    <div class="remove-question-list">
+        <div id="remove-question-list"></div>
         <form id="flashcard-remove-Form">
-            <h2 class="game-question-title">Flashcard Number to Remove:</h2>
+            <h2 class="game-question-title">Question number:</h2>
             <input type="text" id="inputorder" placeholder="Enter flashcard number" />
-            <button class="remove-enter-button" type="submit">Remove</button>
+            <button class="add-enter-button" type="submit">Submit</button>
         </form>
     </div>
-
-    <button class="return-btn" onclick="location.href='mainpage.html'">Return to Main Page</button>
+    
+    <button class="return btn" onclick="location.href='mainpage.html'">Return to Main Page</button>
 
     <!-- Link to external JavaScript file -->
     <script src="yourScriptFile.js"></script>
