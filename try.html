@@ -102,7 +102,7 @@
             }
         });
 
-        // JavaScript to handle TicTacToe form submission
+        // JavaScript to remove Flashcard form submission
         document.getElementById('remove-form').addEventListener('submit', async function (event) {
             event.preventDefault(); // Prevent form from reloading page
 
@@ -132,7 +132,38 @@
             }
         });
 
-        
+        // // Function to fetch flashcards from the FastAPI backend
+        // async function fetchFlashcards() {
+        //     try {
+        //         const response = await fetch("http://127.0.0.1:8000/flashcards/");
+        //         if (response.ok) {
+        //             const data = await response.json();
+        //             console.log("Flashcards:", data.flashcards);
+        //             // Process the flashcards data, e.g., display it on the page
+        //             displayFlashcards(data.flashcards);
+        //         } else {
+        //             console.error("Failed to fetch flashcards.");
+        //         }
+        //     } catch (error) {
+        //         console.error("Error:", error);
+        //     }
+        // }
+
+        // // Function to display flashcards on the page
+        // function displayFlashcards(flashcards) {
+        //     const flashcardContainer = document.getElementById("flashcard-container");
+        //     flashcardContainer.innerHTML = "";  // Clear any existing content
+        //     flashcards.forEach(card => {
+        //         const flashcardDiv = document.createElement("div");
+        //         flashcardDiv.classList.add("flashcard");
+        //         flashcardDiv.innerHTML = `<h3>${card.question}</h3>`;
+        //         flashcardContainer.appendChild(flashcardDiv);
+        //     });
+        // }
+
+        // Call the function to fetch and display flashcards
+        fetchFlashcards();
+
     </script>
 
 

@@ -120,3 +120,25 @@ async function ticTacToeAnswer() {
 }
 
 ticTacToeAnswer();
+
+
+let flashcardList = [];
+
+// Function to fetch flashcards from the FastAPI backend
+async function fetchFlashcards() {
+    try {
+        const response = await fetch("http://127.0.0.1:8000/flashcards/");
+        if (response.ok) {
+            const data = await response.json();
+            flashcardList = data.flashcards;  // Store the list of flashcards in the array
+            console.log("Flashcard List:", flashcardList);  // Log the array to the console
+        } else {
+            console.error("Failed to fetch flashcards.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+// Call the function to fetch and store flashcards in the list
+fetchFlashcards();

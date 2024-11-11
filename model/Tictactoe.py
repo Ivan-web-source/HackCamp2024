@@ -166,6 +166,11 @@ async def remove(input_data: FlashCardDelete):
     return {
         "message": f"FlashCard number '{input_data.num} in the list has been remove, remaining FlashCard'{len(game.get_flash_cards())}'"
     }
+    
+# Endpoint to get flashcards
+@app.get("/flashcards/")
+async def get_flashcards():
+    return {"flashcards": game.get_flash_cards()}
 # Root route
 # @app.get("/")
 # def read_root():
