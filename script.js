@@ -44,10 +44,11 @@ function setCell(cellNum) {
 
 function modifyCell(cellNum) {
     let cell = setCell(cellNum);
+    console.log(result1);
     // ticTacToeAnswer(cell_number);
-    if (result1 === "Player 1 Move") {
+    if (result1 == "Player 1 Move") {
         cell.style.backgroundImage = "url('./images/Cross.png')";
-    } else if (result1 === "Player 2 Move") {
+    } else if (result1 == "Player 2 Move") {
         cell.src = "./images/Circular circle.png";
     }
 }
