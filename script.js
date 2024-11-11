@@ -44,13 +44,16 @@ function setCell(cellNum) {
 
 function modifyCell(cellNum) {
     let cell = setCell(cellNum);
-    console.log(result1);
+    let player = getCurrentPlayerInfo();
     // ticTacToeAnswer(cell_number);
-    if (result1 == "Player 1 Move") {
-        cell.style.backgroundImage = "url('./images/Cross.png')";
-    } else if (result1 == "Player 2 Move") {
-        cell.src = "./images/Circular circle.png";
-    }
+    console.log(player);
+    player.then(result => {
+        if (result === "X") {
+            cell.style.backgroundImage = "url('./images/Cross.png')";
+        } else {
+            cell.style.backgroundImage = "url(./images/Circular circle.png)";
+        }
+    });
 }
 
 async function createItem() {
@@ -177,9 +180,7 @@ async function getCurrentPlayerInfo() {
         console.log('Current Player:', data.current_player); // 'PLAYER1' or 'PLAYER2'
         console.log('Current Value:', data.current_value);   // 'X' or 'O'
 
-        // Example: Update HTML to show current player and value
-        document.getElementById("current-player").innerText = `Current Player: ${data.current_player}`;
-        document.getElementById("current-value").innerText = `Current Value: ${data.current_value}`;
+        return data.current_value;
     } catch (error) {
         console.error("Error fetching current player info:", error);
     }
