@@ -8,7 +8,7 @@ function cellSeven() { return 7; }
 function cellEight() { return 8; }
 function cellNine() { return 9; }
 
-function setCell() {
+function setCell(cellNum) {
     switch (cellNum) {
         case 1:
             cell = document.getElementsByClassName("square1");
@@ -41,9 +41,10 @@ function setCell() {
     return cell;
 }
 
-function modifyCell() {
+function modifyCell(cellNum) {
     cond = ""; // TODO
-    let cell = setCell();
+    let cell = setCell(cellNum);
+    ticTacToeAnswer(cell_number);
     if (cond === "Player 1 Move") {
         cell.src = "./images/Cross.png";
     } else if (cond === "Player 2 Move") {
@@ -88,16 +89,18 @@ async function createItem() {
 // Call the function to attach the event listener when the page loads
 createItem();
 
-async function ticTacToeAnswer() {
-    document.getElementById('tictactoe').addEventListener('submitans', async function (event) {
+async function ticTacToeAnswer(cell_number) {
+    document.getElementById('tictactoe-form').addEventListener('submit', async function (event) {
         event.preventDefault(); // Prevent form from reloading page
     
         // Get values from form fields
+        const cell_number = cell_number;   // Y-axis (0, 1, 2)
         const submitted_answer = document.getElementById('answer-submitted_answer').value; // Corrected ID here
     
         // Create an object to send to the backend
         const data1 = {
-            submitted_answer: submitted_answer
+            submitted_answer: submitted_answer,
+            cell_number: cell_number
         };
     
         // Send data to the FastAPI backend using fetch
@@ -119,4 +122,4 @@ async function ticTacToeAnswer() {
     });
 }
 
-ticTacToeAnswer();
+
