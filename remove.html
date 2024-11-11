@@ -13,14 +13,16 @@
     <div class="flashcard list" id="add-question-list">
         <!-- Flashcard list will be populated here -->
     </div>
-    <div class="remove-question-list">
-        <div id="remove-question-list"></div>
-        <form id="flashcard-remove-Form">
-            <h2 class="game-question-title">Question number:</h2>
-            <input type="text" id="inputorder" placeholder="Enter flashcard number" />
-            <button class="add-enter-button" type="submit">Submit</button>
-        </form>
-    </div>
+    <div class="add-question-answer-section" id="add-question-list"></div>
+        <div class="add-question-answer-section">
+            <form id="flashcard-Form">
+                <h2 class="game-question-title">Question number:</h2>
+                <input type="text" id="inputquestion" placeholder="Enter question" />
+                <button class="add-enter-button" type="submit" onclick="formQuestionList()">Submit</button>            
+            </form>
+            <button class="game-return-button" onclick="location.href='mainpage.html'">Return to Main Page</button>
+        </div>
+        <div class="flashcard list"></div>
     
     <button class="return btn" onclick="location.href='mainpage.html'">Return to Main Page</button>
 
