@@ -46,9 +46,9 @@ class Tictactoe:
     def add_flash_card(self, flash_card):
         self.flashcards.append(flash_card)
 
-    def remove_flash_card(self, flash_card_number):
-        self.flashcards.pop(flash_card_number)
-        
+    # def remove_flash_card(self, flash_card_number):
+    #     if flash_card_number < len(self.flashcards):
+    #         del self.flashcards[flash_card_number]
         
     def put_cell(self, cell_number):
             if cell_number < 4:
@@ -97,10 +97,10 @@ class Tictactoe:
 
             if curr_flash_card.check_answer(temp):
                 if self.status_player1:
-                    self.flashcards.remove_flash_card(number)
+                    self.flashcards.pop(number)
                     return "Player 1 Move"
                 else:
-                    self.flashcards.remove_flash_card(number)
+                    self.flashcards.pop(number)
                     return "Player 2 Move"
             else:
                 if self.status_player1:
@@ -188,9 +188,10 @@ class FlashCardDelete(BaseModel):
 # API endpoint to receive the data from JavaScript and delete a FlashCard instance
 @app.post("/remove-flashcard/")
 async def remove(input_data: FlashCardDelete):
-    game.remove_flash_card(input_data.num)
+    local = len(game.get_flash_cards()) - 1
+    game.get_flash_cards().pop(input_data.num - 1)
     return {
-        "message": f"FlashCard number '{input_data.num} in the list has been remove, remaining FlashCard'{len(game.get_flash_cards())}'"
+        "message": f"FlashCard number '{input_data.num} in the list has been remove, remaining FlashCard'{local}'"
     }
     
 # Endpoint to get flashcards
