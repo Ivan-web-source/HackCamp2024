@@ -58,13 +58,13 @@ async function createItem() {
         event.preventDefault(); // Prevent form from reloading page
 
         // Get values from form fields
-        const question = document.getElementById('question').value;
-        const answer = document.getElementById('answer').value;
+        const inputquestion = document.getElementById('inputquestion').value;
+        const inputanswer = document.getElementById('inputanswer').value;
 
         // Create an object to send to the backend
         const data = {
-            question: question,
-            answer: answer
+            question: inputquestion,
+            answer: inputanswer
         };
 
         // Send data to the FastAPI backend using fetch
