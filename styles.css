@@ -202,6 +202,25 @@ body.remove {
     transition-duration: 0.3s;
     background-color: rgb(138, 21, 168);
 }
+
+.add-enter-button {
+    width: 20%;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 2rem;
+    background-color: rgb(181, 130, 201);
+}
+
+.add-enter-button:hover {
+    transition-duration: 0.3s;
+    background-color: rgb(138, 21, 168);
+}
+
+.add-question-answer-section {
+    margin: 0;
+    float: left;
+    width: 50%;
+}
 .board {
     float: left;
     width: 500px;
