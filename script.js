@@ -94,7 +94,6 @@ async function ticTacToeAnswer(cell_number) {
         event.preventDefault(); // Prevent form from reloading page
     
         // Get values from form fields
-        const cell_number = cell_number;   // Y-axis (0, 1, 2)
         const submitted_answer = document.getElementById('answer-submitted_answer').value; // Corrected ID here
     
         // Create an object to send to the backend
