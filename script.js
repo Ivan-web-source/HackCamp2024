@@ -112,7 +112,39 @@ async function ticTacToeAnswer() {
         }
     });
 }
+ticTacToeAnswer()
 
 
+let flashcardList = [];
 
-ticTacToeAnswer();
+// Function to fetch flashcards from the FastAPI backend
+async function fetchFlashcards() {
+    try {
+        const response = await fetch("http://127.0.0.1:8000/flashcards/");
+        if (response.ok) {
+            const data = await response.json();
+            flashcardList = data.flashcards;  // Store the list of flashcards in the array
+            console.log("Flashcard List:", flashcardList);  // Log the array to the console
+            formQuestionList();  // Call formQuestionList after data is fetched
+        } else {
+            console.error("Failed to fetch flashcards.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+// Fetch and store flashcards, then render them
+fetchFlashcards();
+
+function formQuestionList() {
+    const container1 = document.getElementById("add-question-list");
+
+    let content = "";  // Clear the content string
+
+    for (let i = 0; i < flashcardList.length; i++) {
+        content += "<div class='question-in-list'>" + flashcardList[i].question + "</div>";
+    }
+
+    container1.innerHTML = content; // Populate "add-question-list"
+}
