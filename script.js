@@ -45,9 +45,9 @@ function setCell(cellNum) {
 function modifyCell(cellNum) {
     let cell = setCell(cellNum);
     // ticTacToeAnswer(cell_number);
-    if (true) {
+    if (result1 === "Player 1 Move") {
         cell.style.backgroundImage = "url('./images/Cross.png')";
-    } else if (cond === "Player 2 Move") {
+    } else if (result1 === "Player 2 Move") {
         cell.src = "./images/Circular circle.png";
     }
 }
