@@ -148,3 +148,25 @@ function formQuestionList() {
 
     container1.innerHTML = content; // Populate "add-question-list"
 }
+
+async function fetchCurrentFlashcardQuestion() {
+    try {
+        // Send a GET request to the FastAPI backend
+        const response = await fetch('http://127.0.0.1:8000/get-current-flashcard-question');
+        const data = await response.json();
+
+        // Check if a valid question is returned
+        if (data.question) {
+            // Display the question on the page
+            document.getElementById('flashcard-question').innerHTML = `Question: ${data.question}`;
+        } else {
+            console.error("Error fetching flashcard:", data.error);
+        }
+    } catch (error) {
+        console.error('Error fetching flashcard:', error);
+    }
+}
+
+
+// Fetch and display the current flashcard question when the page loads
+window.onload = fetchCurrentFlashcardQuestion;  // Fetch the first flashcard's question
