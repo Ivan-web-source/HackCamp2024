@@ -146,16 +146,13 @@ async function fetchFlashcards() {
 fetchFlashcards();
 
 function formQuestionList() {
-    const container = document.getElementById("add-question-list");
-    const container2 = document.getElementById("remove-question-list");
+    const container1 = document.getElementById("add-question-list");
 
-    let content = "";
+    let content = "";  // Clear the content string
 
-    // Loop through the flashcards and create content
     for (let i = 0; i < flashcardList.length; i++) {
         content += "<div class='question-in-list'>" + flashcardList[i].question + "</div>";
     }
 
-    container.innerHTML = content;
-    container2.innerHTML = content;
+    container1.innerHTML = content; // Populate "add-question-list"
 }
