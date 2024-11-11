@@ -54,7 +54,7 @@ function modifyCell(cellNum) {
 
 async function createItem() {
     // JavaScript to handle form submission
-    document.getElementById('flashcard-Form').addEventListener('submit', async function(event) {
+    document.getElementById('flashcard-form').addEventListener('submit', async function(event) {
         event.preventDefault(); // Prevent form from reloading page
 
         // Get values from form fields
@@ -94,7 +94,6 @@ async function ticTacToeAnswer(cell_number) {
         event.preventDefault(); // Prevent form from reloading page
     
         // Get values from form fields
-        const cell_number = cell_number;   // Y-axis (0, 1, 2)
         const submitted_answer = document.getElementById('answer-submitted_answer').value; // Corrected ID here
     
         // Create an object to send to the backend
