@@ -44,10 +44,11 @@ function setCell(cellNum) {
 
 function modifyCell(cellNum) {
     let cell = setCell(cellNum);
+    console.log(result1);
     // ticTacToeAnswer(cell_number);
-    if (result1 === "Player 1 Move") {
+    if (result1 == "Player 1 Move") {
         cell.style.backgroundImage = "url('./images/Cross.png')";
-    } else if (result1 === "Player 2 Move") {
+    } else if (result1 == "Player 2 Move") {
         cell.src = "./images/Circular circle.png";
     }
 }
@@ -139,14 +140,16 @@ fetchFlashcards();
 
 function formQuestionList() {
     const container1 = document.getElementById("add-question-list");
+    const container2 = document.getElementById("remove-questions-list");
 
     let content = "";  // Clear the content string
 
     for (let i = 0; i < flashcardList.length; i++) {
-        content += "<div class='question-in-list'>" + flashcardList[i].question + "</div>";
+        content += "<div class='question-in-list'>" + flashcardList[i].question + "</div>\n";
     }
 
     container1.innerHTML = content; // Populate "add-question-list"
+    container2.innerHTML = content;
 }
 
 async function fetchCurrentFlashcardQuestion() {
@@ -158,7 +161,7 @@ async function fetchCurrentFlashcardQuestion() {
         // Check if a valid question is returned
         if (data.question) {
             // Display the question on the page
-            document.getElementById('flashcard-question').innerHTML = `Question: ${data.question}`;
+            document.getElementById('flashcard-question').innerHTML = `${data.question}`;
         } else {
             console.error("Error fetching flashcard:", data.error);
         }

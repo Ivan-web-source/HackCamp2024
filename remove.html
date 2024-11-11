@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>MatchMind</title>
+    <script src="script.js"></script>
 </head>
 <body class="remove">
     <div class="mainpage-header">
         <h1 class="title">MatchMind</h1>
     </div>
-    <div class="flashcard list">
-
-    </div>
-    <div class="remove-question-list">
-        <div id="remove-question-list"></div>
+    <div id="add-question-list"></div>
+    <div>
         <form id="flashcard-remove-Form">
             <h2 class="game-question-title">Question number:</h2>
             <input type="text" id="inputorder" placeholder="Enter flashcard number" />
@@ -24,7 +22,7 @@
 
     </div>
 
-    <button class="return btn" onclick="location.href='mainpage.html'">Return to Main Page</button>
+    <button class="mainpage-button" onclick="location.href='mainpage.html'">Return to Main Page</button>
 
     <script>
         document.getElementById('flashcard-remove-Form').addEventListener('submit', async function (event) {
@@ -54,14 +52,6 @@
     } catch (error) {
         console.error('Error:', error);
     }
-    function formQuestionList() {
-    const container = document.getElementById("remove-question-list");
-    let content = "";  // Clear the content string
-    for (let i = 0; i < flashcardList.length; i++) {
-        content += "<div class='question-in-list'>" + flashcardList[i].question + "</div>";
-    }
-    container.innerHTML = content; // Populate only "add-question-list"
-}
 });
     </script>
 </body>
