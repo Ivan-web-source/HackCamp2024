@@ -22,13 +22,18 @@
                 <div class="square square7" onclick="modifyCell(cellSeven())"></div>
                 <div class="square square8" onclick="modifyCell(cellEight())"></div>
                 <div class="square square9" onclick="modifyCell(cellNine())"></div>
-            </div>
+            </div>     
         </div>
         <div class="game-article-part">
             <div class="question-answer-section">
                 <div class="game-question">
                     <h2 class="game-question-title">Question:</h2>
                     <br>
+                    <div id="board">
+                        <div id="game-status">Game is ongoing. Make your move!</div>
+    
+                        <button onclick="checkGameStatus()">Check Game Status</button>
+                    </div>
                     <p id="flashcard-question"></p>
                 </div>
                 <div class="game-answer">

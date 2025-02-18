@@ -50,6 +50,41 @@ class Tictactoe:
     # def remove_flash_card(self, flash_card_number):
     #     if flash_card_number < len(self.flashcards):
     #         del self.flashcards[flash_card_number]
+    
+    def game_finished(self):
+        # Check for a win in rows, columns, or diagonals
+        # Check rows
+        for row in self.horizontal:
+            if row[0] == row[1] == row[2] and row[0] is not None:
+                self.game_status = "win"
+                return True
+        
+        # Check columns
+        for col in range(3):
+            if self.horizontal[0][col] == self.horizontal[1][col] == self.horizontal[2][col] and self.horizontal[0][col] is not None:
+                self.game_status = "win"
+                return True
+        
+        # Check diagonals
+        if self.horizontal[0][0] == self.horizontal[1][1] == self.horizontal[2][2] and self.horizontal[0][0] is not None:
+            self.game_status = "win"
+            return True
+        if self.horizontal[0][2] == self.horizontal[1][1] == self.horizontal[2][0] and self.horizontal[0][2] is not None:
+            self.game_status = "win"
+            return True
+        
+        # Check for a draw: if the board is full and no winner
+        for row in self.horizontal:
+            if None in row:
+                return False  # Game is still ongoing
+
+        # If no winner and the board is full, it's a draw
+        self.game_status = "draw"
+        return True
+
+        
+    
+        
         
     def put_cell(self, cell_number):
             if cell_number < 4:
@@ -209,7 +244,28 @@ async def get_current_flashcard_question():
         return {"question": current_flashcard.question}
     else:
         return {"error": "No flashcards available"}
-# # Root route
-# @app.get("/")
-# def read_root():
-#     return {"message": "Welcome to the FlashCard API!"}
+
+@app.get("/current-player-info/")
+async def current_player_info():
+    current_player = "PLAYER1" if game.return_status_player1() else "PLAYER2"
+    current_value = game.player["PLAYER1"] if game.return_status_player1() else game.player["PLAYER2"]
+    
+    return {
+        "current_player": current_player,
+        "current_value": current_value
+    } 
+    
+# Example status, modify with your actual game logic
+game_status = "ongoing"  # Can be "ongoing", "win", or "draw"
+
+@app.get("/game-status/")
+async def get_game_status():
+    # Here you would add logic to return the current game status
+    # For example, you could check the state of the board and return the status
+    return {"game_status": game_status}
+
+@app.post("/game-status/set-status/")
+async def set_game_status(status: str):
+    global game_status
+    game_status = status
+    return {"message": f"Game status updated to {game_status}"}

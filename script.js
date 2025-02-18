@@ -44,12 +44,16 @@ function setCell(cellNum) {
 
 function modifyCell(cellNum) {
     let cell = setCell(cellNum);
+    let player = getCurrentPlayerInfo();
     // ticTacToeAnswer(cell_number);
-    if (result1 === "Player 1 Move") {
-        cell.style.backgroundImage = "url('./images/Cross.png')";
-    } else if (result1 === "Player 2 Move") {
-        cell.src = "./images/Circular circle.png";
-    }
+    console.log(player);
+    player.then(result => {
+        if (result === "X") {
+            cell.style.backgroundImage = "url('./images/Cross.png')";
+        } else {
+            cell.style.backgroundImage = "url(./images/Circular circle.png)";
+        }
+    });
 }
 
 async function createItem() {
@@ -139,14 +143,16 @@ fetchFlashcards();
 
 function formQuestionList() {
     const container1 = document.getElementById("add-question-list");
+    const container2 = document.getElementById("remove-questions-list");
 
     let content = "";  // Clear the content string
 
     for (let i = 0; i < flashcardList.length; i++) {
-        content += "<div class='question-in-list'>" + flashcardList[i].question + "</div>";
+        content += "<div class='question-in-list'>" + flashcardList[i].question + "</div>\n";
     }
 
     container1.innerHTML = content; // Populate "add-question-list"
+    container2.innerHTML = content;
 }
 
 async function fetchCurrentFlashcardQuestion() {
@@ -158,7 +164,7 @@ async function fetchCurrentFlashcardQuestion() {
         // Check if a valid question is returned
         if (data.question) {
             // Display the question on the page
-            document.getElementById('flashcard-question').innerHTML = `Question: ${data.question}`;
+            document.getElementById('flashcard-question').innerHTML = `${data.question}`;
         } else {
             console.error("Error fetching flashcard:", data.error);
         }
@@ -167,6 +173,100 @@ async function fetchCurrentFlashcardQuestion() {
     }
 }
 
+async function getCurrentPlayerInfo() {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/current-player-info/');
+        const data = await response.json();
+        console.log('Current Player:', data.current_player); // 'PLAYER1' or 'PLAYER2'
+        console.log('Current Value:', data.current_value);   // 'X' or 'O'
+
+        return data.current_value;
+    } catch (error) {
+        console.error("Error fetching current player info:", error);
+    }
+}
+
+
+// Function to check the game status after each move
+async function checkGameStatus() {
+    try {
+        // Fetch game status from the FastAPI backend
+        const response = await fetch("http://127.0.0.1:8000/game-status/");
+        
+        // Check if the response is successful
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        // Parse the response as JSON
+        const data = await response.json();
+        
+        // Log the data to the console to verify
+        console.log(data);
+        
+        // Get the game status from the response
+        const gameStatus = data.game_status;
+        
+        // Update the game status on the page
+        updateGameStatus(gameStatus);
+    } catch (error) {
+        console.error('Error checking game status:', error);
+    }
+}
+
+// Function to update the game status in the UI
+function updateGameStatus(status) {
+    const statusElement = document.getElementById("game-status");
+
+    // Log the status to verify it's being passed correctly
+    console.log('Updating game status:', status);
+    
+    if (!status) {
+        statusElement.textContent = "Error: Could not fetch game status.";
+        return;
+    }
+
+    if (status === "ongoing") {
+        statusElement.textContent = "Game is ongoing. Make your move!";
+        statusElement.style.color = "green";
+    } else if (status === "win") {
+        statusElement.textContent = "Game Over! Player has won!";
+        statusElement.style.color = "red";
+    } else if (status === "draw") {
+        statusElement.textContent = "Game Over! It's a draw!";
+        statusElement.style.color = "blue";
+    } else {
+        statusElement.textContent = "Error: Unknown status.";
+    }
+}
+
+
+// Call this function when a player makes a move
+async function makeMove(cellNumber, answer) {
+    // Send the move data (e.g., cell number and answer) to the backend
+    await fetch("http://127.0.0.1:8000/current-player-info", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ submitted_answer: answer }),
+    });
+
+    // After making a move, check if the game has finished
+    await checkGameStatus();
+}
+
+// Example of handling a move (you can wire this to your board's click events)
+document.getElementById("board").addEventListener("click", (event) => {
+    // Get cell number and answer from the event (just an example)
+    const cellNumber = event.target.dataset.cell;  // Assume data-cell attribute on each cell
+    const answer = "yourAnswer";  // Answer should come from user input
+
+    makeMove(cellNumber, answer);
+});
+
+// Call the function to display the current player and value when the page loads
+window.onload = getCurrentPlayerInfo;
 
 // Fetch and display the current flashcard question when the page loads
 window.onload = fetchCurrentFlashcardQuestion;  // Fetch the first flashcard's question
