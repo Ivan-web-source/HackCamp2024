@@ -69,13 +69,16 @@ class Script2 {
         if (flashcards[beginning].question == document.getElementById("inputanswer")) {
             if (turnP1) {
                 turnP1 = false;
+                flashcards[beginning] = 1;
             } else {
                 turnP1 = true;
+                flashcards[beginning] = 2;
             }
             correctAns = true;
             flashcards.splice(beginning, 1); // to make sure player must modify board before entering another answer
             beginning += 1;
         }
+        this.game_finished(flashcards);
     }
     
      async modifyCell(cellNum) {
