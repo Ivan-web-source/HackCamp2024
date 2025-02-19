@@ -78,7 +78,9 @@ class Script2 {
             flashcards.splice(beginning, 1); // to make sure player must modify board before entering another answer
             beginning += 1;
         }
-        this.game_finished(flashcards);
+        if (this.game_finished(flashcards)) {
+            // show animation di HTML ("Congrats ....")
+        }
     }
     
      async modifyCell(cellNum) {
