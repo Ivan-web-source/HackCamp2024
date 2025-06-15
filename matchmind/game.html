@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatchMind - Play</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-page">
+        <!-- Navigation -->
+        <nav class="game-nav">
+            <button class="nav-btn home-btn" onclick="navigateToHome()">
+                <span>← Home</span>
+            </button>
+            <h2 class="nav-title">MatchMind</h2>
+            <button class="nav-btn reset-btn" onclick="resetGame()">
+                <span>Reset Game</span>
+            </button>
+        </nav>
+
+        <div class="container">
+            <div class="game-section">
+                <div class="board-section">
+                    <div class="board" id="board">
+                        <div class="square" data-index="0"></div>
+                        <div class="square" data-index="1"></div>
+                        <div class="square" data-index="2"></div>
+                        <div class="square" data-index="3"></div>
+                        <div class="square" data-index="4"></div>
+                        <div class="square" data-index="5"></div>
+                        <div class="square" data-index="6"></div>
+                        <div class="square" data-index="7"></div>
+                        <div class="square" data-index="8"></div>
+                    </div>
+                </div>
+                
+                <div class="game-controls">
+                    <div class="game-status" id="gameStatus">
+                        Add some flashcards to start playing!
+                    </div>
+                    
+                    <div class="flashcard-section">
+                        <h3>Add Flashcard</h3>
+                        <div class="input-group">
+                            <input type="text" id="questionInput" placeholder="Enter question">
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="answerInput" placeholder="Enter answer">
+                            <button onclick="addFlashcard()">Add</button>
+                        </div>
+                    </div>
+                    
+                    <div class="flashcard-section">
+                        <h3>Current Question</h3>
+                        <div class="current-question" id="currentQuestion">
+                            Click a square to get a question!
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="answerSubmit" placeholder="Enter your answer">
+                            <button onclick="submitAnswer()">Submit</button>
+                        </div>
+                    </div>
+                    
+                    <div class="flashcard-section">
+                        <h3>Flashcards (<span id="flashcardCount">0</span>)</h3>
+                        <div class="flashcard-list" id="flashcardList">
+                            No flashcards added yet.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="overlay" id="overlay"></div>
+        <div class="winner-announcement" id="winnerAnnouncement">
+            <h2 id="winnerText"></h2>
+            <button onclick="resetGame()">Play Again</button>
+        </div>
+
+        <!-- Transition Overlay -->
+        <div class="transition-overlay" id="transitionOverlay">
+            <div class="transition-content">
+                <div class="loading-grid">
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                </div>
+                <p class="loading-text">Loading Home...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="frontend.js"></script>
+</body>
+</html>

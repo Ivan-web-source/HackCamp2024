@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatchMind - Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="home-container">
+        <!-- Animated Background -->
+        <div class="animated-bg">
+            <div class="floating-symbol">X</div>
+            <div class="floating-symbol">O</div>
+            <div class="floating-symbol">?</div>
+            <div class="floating-symbol">!</div>
+            <div class="floating-symbol">X</div>
+            <div class="floating-symbol">O</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="hero-section">
+            <div class="logo-container">
+                <div class="logo-grid">
+                    <div class="logo-square"></div>
+                    <div class="logo-square logo-x">X</div>
+                    <div class="logo-square"></div>
+                    <div class="logo-square logo-o">O</div>
+                    <div class="logo-square logo-center">?</div>
+                    <div class="logo-square logo-x">X</div>
+                    <div class="logo-square"></div>
+                    <div class="logo-square logo-o">O</div>
+                    <div class="logo-square"></div>
+                </div>
+                <h1 class="main-title">MatchMind</h1>
+                <p class="subtitle">Where Tic-Tac-Toe Meets Learning</p>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Learn While Playing</h3>
+                    <p>Test your knowledge with custom flashcards</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Strategic Gameplay</h3>
+                    <p>Answer correctly to claim your square</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Quick & Fun</h3>
+                    <p>Perfect for study breaks and competitions</p>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <button class="play-btn" onclick="navigateToGame()">
+                    <span class="btn-text">Start Playing</span>
+                    <div class="btn-arrow">→</div>
+                </button>
+                <p class="play-hint">Create your flashcards and challenge a friend!</p>
+            </div>
+        </div>
+
+        <!-- Transition Overlay -->
+        <div class="transition-overlay" id="transitionOverlay">
+            <div class="transition-content">
+                <div class="loading-grid">
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                    <div class="loading-square"></div>
+                </div>
+                <p class="loading-text">Loading MatchMind...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="frontend.js"></script>
+</body>
+</html>
