@@ -35,7 +35,7 @@ app = FastAPI(
 # Add CORS middleware to allow frontend requests
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, specify your frontend URL
+    allow_origins=["https://ivan-web-source.github.io/HackCamp2024/"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
