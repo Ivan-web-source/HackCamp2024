@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse
+from fastapi import Request
 from pydantic import BaseModel
 from typing import List, Optional
 import json
@@ -261,8 +262,12 @@ async def not_found_handler(request, exc):
         status_code=404
     )
 
-@app.exception_handler(500)
-async def internal_error_exception_handler(request, exc):
+@app.exception_handler(Exception)
+async def all_exception_handler(request: Request, exc: Exception):
+    import traceback
+    print("Exception:", exc)
+    traceback.print_exc()
+
     return JSONResponse(
         content={"error": "Internal server error"},
         status_code=500

@@ -1,5 +1,5 @@
 // API Configuration
-const API_BASE_URL = 'https://braintactoe.com/';
+const API_BASE_URL = 'https://braintactoe.com';
 
 // Game state variables
 let flashcards = [];
