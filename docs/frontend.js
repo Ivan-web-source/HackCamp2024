@@ -1,5 +1,5 @@
 // API Configuration
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = 'http://3.92.201.193:8000';
 
 // Game state variables
 let flashcards = [];
