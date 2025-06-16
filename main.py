@@ -37,7 +37,7 @@ app = FastAPI(
 # Add CORS middleware to allow frontend requests
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://ivan-web-source.github.io"], 
+    allow_origin_regex="https://ivan-web-source.github.io.*", 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -91,16 +91,19 @@ load_data()
 @app.get("/")
 async def root():
     """Root endpoint - API status"""
-    return {
-        "message": "MatchMind API is running!",
-        "version": "1.0.0",
-        "status": "active",
-        "endpoints": {
+    return JSONResponse(
+        content={
+            "message": "MatchMind API is running!",
+            "version": "1.0.0",
+            "status": "active",
+            "endpoints": {
             "flashcards": "/flashcards",
             "game_state": "/game-state",
             "docs": "/docs"
+            }
         }
-    }
+    )
+
 
 @app.get("/flashcards", response_model=List[Flashcard])
 async def get_flashcards():

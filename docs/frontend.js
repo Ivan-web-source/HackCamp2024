@@ -58,7 +58,8 @@ async function apiRequest(endpoint, method = 'GET', data = null) {
             options.body = JSON.stringify(data);
         }
         
-        const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
+        const url = `${API_BASE_URL}${endpoint}`.replace(/([^:]\/)\/+/g, "$1");
+        const response = await fetch(url, options);
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
