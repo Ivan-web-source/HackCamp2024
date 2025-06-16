@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import List, Optional
 import json
@@ -254,12 +255,18 @@ async def health_check():
 
 # Error handlers
 @app.exception_handler(404)
-async def not_found_exception_handler(request, exc):
-    return {"error": "Resource not found"}
+async def not_found_handler(request, exc):
+    return JSONResponse(
+        content={"error": "Resource not found"},
+        status_code=404
+    )
 
 @app.exception_handler(500)
 async def internal_error_exception_handler(request, exc):
-    return {"error": "Internal server error"}
+    return JSONResponse(
+        content={"error": "Internal server error"},
+        status_code=500
+    )
 
 # Serve static files (for development)
 # In production, use a proper web server like Nginx
